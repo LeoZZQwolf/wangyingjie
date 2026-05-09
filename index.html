@@ -9,8 +9,8 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <img class="avatar" src="wyj.jpg" alt="Yingjie Wang">
-      <div class="title">
+      <img class="avatar" id="avatar" src="wyj.jpg" alt="Yingjie Wang">
+      <div class="title" id="title">
         <h1>Yingjie Wang, Ph.D.</h1>
         <p class="subtitle">Professor & Ph.D. Supervisor</p>
         <p class="subtitle">Deputy Director, Office of Development Planning and Discipline Construction</p>
@@ -274,5 +274,26 @@
   <footer class="site-footer">
     <p>© Yingjie Wang</p>
   </footer>
+  <script>
+    (function () {
+      var avatar = document.getElementById("avatar");
+      var title = document.getElementById("title");
+
+      function syncAvatarHeight() {
+        if (!avatar || !title) return;
+        var height = title.getBoundingClientRect().height;
+        if (height > 0) {
+          avatar.style.height = Math.round(height) + "px";
+          avatar.style.width = "auto";
+        }
+      }
+
+      window.addEventListener("load", syncAvatarHeight);
+      window.addEventListener("resize", syncAvatarHeight);
+      if (avatar) {
+        avatar.addEventListener("load", syncAvatarHeight);
+      }
+    })();
+  </script>
 </body>
 </html>
